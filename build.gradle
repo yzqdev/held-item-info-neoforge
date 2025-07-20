@@ -1,0 +1,14 @@
+plugins {
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.80' apply(false)
+}
+
+allprojects {
+    idea {
+        module {
+            downloadSources = true
+            downloadJavadoc = true
+        }
+    }
+    getLayout().getBuildDirectory().set(new File(rootDir, "build/${path.replace(':', '/')}"))
+}

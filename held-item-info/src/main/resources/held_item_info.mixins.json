@@ -1,0 +1,32 @@
+{
+	"package": "io.github.a5b84.helditeminfo.mixin",
+	"required": true,
+	"minVersion": "0.8",
+	"compatibilityLevel": "JAVA_21",
+	"refmap": "held_item_info.refmap.json",
+	"client": [
+		"InGameHudMixin",
+		"block.BrushableBlockMixin",
+		"block.CommandBlockMixin",
+		"block.SpawnerBlocksMixin",
+		"item.DecorationItemMixin",
+		"item.DiscFragmentItemMixin",
+		"item.SignItemMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"mixins": [
+		"block.BeehiveBlockMixin",
+		"item.BannerPatternItemMixin",
+		"item.CrossbowItemMixin",
+		"item.EntityBucketItemMixin",
+		"item.FilledMapItemMixin",
+		"item.FireworkItemsMixin",
+		"item.GoatHornItemMixin",
+		"item.ItemsWithBannerMixin",
+		"item.ItemsWithPotionEffectsMixin",
+		"item.OminousBottleItemMixin",
+		"item.WrittenBookItemMixin"
+	]
+}
