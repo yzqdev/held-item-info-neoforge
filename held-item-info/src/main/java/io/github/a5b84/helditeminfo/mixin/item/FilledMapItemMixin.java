@@ -1,9 +1,8 @@
 package io.github.a5b84.helditeminfo.mixin.item;
 
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import io.github.a5b84.helditeminfo.TooltipAppender;
 import io.github.a5b84.helditeminfo.TooltipBuilder;
-import java.util.function.Supplier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin({MapItem.class})
 public abstract class FilledMapItemMixin implements TooltipAppender {
    public boolean heldItemInfo_shouldAppendTooltip() {
-      return HeldItemInfo.config.showFilledMapId();
+      return HeldItemInfoClient.config.showFilledMapId();
    }
 
    public void heldItemInfo_appendTooltip(TooltipBuilder builder) {

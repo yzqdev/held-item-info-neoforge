@@ -1,14 +1,13 @@
 package io.github.a5b84.helditeminfo.mixin.item;
 
 import com.mojang.serialization.DataResult;
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import io.github.a5b84.helditeminfo.TooltipAppender;
 import io.github.a5b84.helditeminfo.TooltipBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -23,14 +22,13 @@ import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.entity.SignText;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin({SignItem.class})
 public abstract class SignItemMixin implements TooltipAppender {
     public boolean heldItemInfo_shouldAppendTooltip() {
-        return HeldItemInfo.config.showSignText();
+        return HeldItemInfoClient.config.showSignText();
     }
 
     public void heldItemInfo_appendTooltip(TooltipBuilder builder) {
@@ -62,7 +60,7 @@ public abstract class SignItemMixin implements TooltipAppender {
             DataResult var10000 = SignText.DIRECT_CODEC.parse(dynamicOps, blockEntityData.getUnsafe().getCompound(sideKey));
 
 
-            Optional<SignText> signText = var10000.resultOrPartial((Consumer<String>) HeldItemInfo.LOGGER::error);
+            Optional<SignText> signText = var10000.resultOrPartial((Consumer<String>) HeldItemInfoClient.LOGGER::error);
             if (signText.isPresent()) {
                 Component[] messages = ((SignText) signText.get()).getMessages(Minecraft.getInstance().isTextFilteringEnabled());
                 List<MutableComponent> lines = new ArrayList(messages.length);

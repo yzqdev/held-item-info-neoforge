@@ -40,7 +40,7 @@ public final class ContainerContentAppender {
          stacks = Iterables.concat(stacks, bundleContents.items());
       }
 
-      if (!HeldItemInfo.config.mergeSimilarContainerItems()) {
+      if (!HeldItemInfoClient.config.mergeSimilarContainerItems()) {
          return Iterables.transform(stacks, ItemStackContainerEntry::new);
       } else {
          Map<Component, MergedContainerEntry> entries = new LinkedHashMap();

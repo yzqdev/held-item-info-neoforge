@@ -1,8 +1,9 @@
 package io.github.a5b84.helditeminfo.config;
 
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import java.util.ArrayList;
 import java.util.List;
+
 import me.shedaniel.autoconfig.ConfigHolder;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.resources.ResourceLocation;
@@ -22,11 +23,11 @@ public class ConfigChangeListener {
          try {
             ids.add(ResourceLocation.parse(idString));
          } catch (ResourceLocationException e) {
-            HeldItemInfo.LOGGER.error("[Held Item Info] Invalid enchantment identifier '" + idString + "': " + e.getMessage());
+            HeldItemInfoClient.LOGGER.error("[Held Item Info] Invalid enchantment identifier '" + idString + "': " + e.getMessage());
          }
       }
 
-      HeldItemInfo.filteredEnchantments = ids;
+      HeldItemInfoClient.filteredEnchantments = ids;
       return InteractionResult.SUCCESS;
    }
 }

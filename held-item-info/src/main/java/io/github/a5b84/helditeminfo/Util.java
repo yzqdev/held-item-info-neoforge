@@ -36,7 +36,7 @@ public final class Util {
       if (maxLines <= 0) {
          return Collections.emptyList();
       } else {
-         double maxLength = (double)1.25F * (double)maxLines * (double)HeldItemInfo.config.maxLineLength();
+         double maxLength = (double)1.25F * (double)maxLines * (double) HeldItemInfoClient.config.maxLineLength();
          if (maxLength <= (double)0.0F) {
             return Collections.emptyList();
          } else {
@@ -50,7 +50,7 @@ public final class Util {
             }
 
             List<MutableComponent> lines = new ArrayList(maxLines);
-            double maxWidth = (double)HeldItemInfo.config.maxLineLength() * (double)6.0F;
+            double maxWidth = (double) HeldItemInfoClient.config.maxLineLength() * (double)6.0F;
             if (maxWidth > (double)Integer.MAX_VALUE) {
                maxWidth = (double)Integer.MAX_VALUE;
             }
@@ -76,7 +76,7 @@ public final class Util {
       if (maxLines <= 0) {
          return Collections.emptyList();
       } else {
-         double maxWidth = (double)HeldItemInfo.config.maxLineLength() * (double)6.0F;
+         double maxWidth = (double) HeldItemInfoClient.config.maxLineLength() * (double)6.0F;
          if (maxWidth > (double)Integer.MAX_VALUE) {
             maxWidth = (double)Integer.MAX_VALUE;
          }

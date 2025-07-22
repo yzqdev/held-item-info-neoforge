@@ -2,7 +2,7 @@ package io.github.a5b84.helditeminfo.mixin;
 
 import io.github.a5b84.helditeminfo.Appenders;
 import io.github.a5b84.helditeminfo.ContainerContentAppender;
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import io.github.a5b84.helditeminfo.TooltipAppender;
 import io.github.a5b84.helditeminfo.TooltipBuilder;
 import io.github.a5b84.helditeminfo.TooltipLine;
@@ -56,13 +56,13 @@ public abstract class InGameHudMixin {
 )}
    )
    public void onBeforeRenderHeldItemTooltip(GuiGraphics context, int yShift, CallbackInfo ci) {
-      this.y = context.guiHeight() - 50 - 9 - (int)(((float)HeldItemInfo.config.lineHeight() - HeldItemInfo.config.offsetPerExtraLine()) * (float)(this.tooltip.size() - 1)) - HeldItemInfo.config.verticalOffset();
+      this.y = context.guiHeight() - 50 - 9 - (int)(((float) HeldItemInfoClient.config.lineHeight() - HeldItemInfoClient.config.offsetPerExtraLine()) * (float)(this.tooltip.size() - 1)) - HeldItemInfoClient.config.verticalOffset();
       if (!this.minecraft.gameMode.canHurtPlayer()) {
          this.y += 14;
       }
 
-      if (HeldItemInfo.config.showName() && this.tooltip.size() > 1) {
-         this.y -= HeldItemInfo.config.itemNameSpacing();
+      if (HeldItemInfoClient.config.showName() && this.tooltip.size() > 1) {
+         this.y -= HeldItemInfoClient.config.itemNameSpacing();
       }
 
    }
@@ -86,23 +86,23 @@ public abstract class InGameHudMixin {
          }
 
          int scaledWidth = context.guiWidth();
-         int height = HeldItemInfo.config.lineHeight() * this.tooltip.size();
-         if (HeldItemInfo.config.showName() && this.tooltip.size() > 1) {
-            height += HeldItemInfo.config.itemNameSpacing();
+         int height = HeldItemInfoClient.config.lineHeight() * this.tooltip.size();
+         if (HeldItemInfoClient.config.showName() && this.tooltip.size() > 1) {
+            height += HeldItemInfoClient.config.itemNameSpacing();
          }
 
          context.fill((scaledWidth - this.maxWidth) / 2 - 2, this.y - 2, (scaledWidth + this.maxWidth) / 2 + 2, this.y + height + 2, backgroundColor);
       }
 
-      int lineHeight = HeldItemInfo.config.lineHeight();
+      int lineHeight = HeldItemInfoClient.config.lineHeight();
       int i = 0;
 
       for(TooltipLine line : this.tooltip) {
          int x = (context.guiWidth() - line.width) / 2;
          context.drawString(textRenderer, line.text, x, this.y, color);
          this.y += lineHeight;
-         if (i == 0 && HeldItemInfo.config.showName()) {
-            this.y += HeldItemInfo.config.itemNameSpacing();
+         if (i == 0 && HeldItemInfoClient.config.showName()) {
+            this.y += HeldItemInfoClient.config.itemNameSpacing();
          }
 
          ++i;
@@ -132,7 +132,7 @@ public abstract class InGameHudMixin {
             if (!TooltipLine.areEquivalent(this.tooltip, newInfo)) {
                this.tooltip = TooltipLine.from(newInfo);
                this.maxWidth = -1;
-               this.toolHighlightTimer = (int)(20.0F * (HeldItemInfo.config.baseFadeDuration() + HeldItemInfo.config.fadeDurationPerExtraLine() * (float)(this.tooltip.size() - 1)));
+               this.toolHighlightTimer = (int)(20.0F * (HeldItemInfoClient.config.baseFadeDuration() + HeldItemInfoClient.config.fadeDurationPerExtraLine() * (float)(this.tooltip.size() - 1)));
             }
          }
 
@@ -145,8 +145,8 @@ public abstract class InGameHudMixin {
          return Collections.emptyList();
       } else {
          Item.TooltipContext tooltipContext = TooltipContext.of(this.minecraft.level);
-         TooltipBuilder builder = new TooltipBuilder(stack, tooltipContext, HeldItemInfo.config.maxLines());
-         if (HeldItemInfo.config.showName()) {
+         TooltipBuilder builder = new TooltipBuilder(stack, tooltipContext, HeldItemInfoClient.config.maxLines());
+         if (HeldItemInfoClient.config.showName()) {
             MutableComponent stackName = Component.empty().append(stack.getHoverName()).withStyle(stack.getRarity().color());
             if (stack.has(DataComponents.CUSTOM_NAME)) {
                stackName.withStyle(ChatFormatting.ITALIC);
@@ -155,7 +155,7 @@ public abstract class InGameHudMixin {
             builder.append(stackName);
          }
 
-         if (!HeldItemInfo.config.respectHideFlags() || !stack.has(DataComponents.HIDE_TOOLTIP)) {
+         if (!HeldItemInfoClient.config.respectHideFlags() || !stack.has(DataComponents.HIDE_TOOLTIP)) {
             Item item = stack.getItem();
             if (item instanceof TooltipAppender) {
                TooltipAppender appender = (TooltipAppender)item;
@@ -175,23 +175,23 @@ public abstract class InGameHudMixin {
                }
             }
 
-            if (HeldItemInfo.config.showMusicDiscDescription()) {
+            if (HeldItemInfoClient.config.showMusicDiscDescription()) {
                Appenders.appendMusicDiscDescription(builder);
             }
 
-            if (HeldItemInfo.config.showEnchantments()) {
+            if (HeldItemInfoClient.config.showEnchantments()) {
                Appenders.appendEnchantments(builder);
             }
 
-            if (HeldItemInfo.config.showContainerContent()) {
+            if (HeldItemInfoClient.config.showContainerContent()) {
                ContainerContentAppender.appendContainerContent(builder);
             }
 
-            if (HeldItemInfo.config.showLore()) {
+            if (HeldItemInfoClient.config.showLore()) {
                Appenders.appendLore(builder);
             }
 
-            if (HeldItemInfo.config.showUnbreakable()) {
+            if (HeldItemInfoClient.config.showUnbreakable()) {
                Appenders.appendUnbreakable(builder);
             }
          }

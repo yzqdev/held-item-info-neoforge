@@ -36,7 +36,7 @@ public final class Appenders {
 
    public static void appendMusicDiscDescription(TooltipBuilder builder) {
       JukeboxPlayable songComponent = (JukeboxPlayable)builder.stack.get(DataComponents.JUKEBOX_PLAYABLE);
-      if (songComponent != null && (!HeldItemInfo.config.respectHideFlags() || songComponent.showInTooltip())) {
+      if (songComponent != null && (!HeldItemInfoClient.config.respectHideFlags() || songComponent.showInTooltip())) {
          songComponent.song().unwrap(builder.tooltipContext.registries()).ifPresent((entry) -> builder.append((Supplier)(() -> {
                MutableComponent description = ((JukeboxSong)entry.value()).description().copy();
                return ComponentUtils.mergeStyles(description, Style.EMPTY.withColor(TooltipBuilder.DEFAULT_COLOR));
@@ -52,7 +52,7 @@ public final class Appenders {
 
    private static void appendEnchantments(TooltipBuilder builder, DataComponentType<ItemEnchantments> componentType) {
       ItemEnchantments enchantments = (ItemEnchantments)builder.stack.get(componentType);
-      if (enchantments != null && !enchantments.isEmpty() && (!HeldItemInfo.config.respectHideFlags() || ( enchantments.showInTooltip ))) {
+      if (enchantments != null && !enchantments.isEmpty() && (!HeldItemInfoClient.config.respectHideFlags() || ( enchantments.showInTooltip ))) {
          HolderSet<Enchantment> tooltipOrder = enchantments. getTagOrEmpty(builder.tooltipContext.registries(), Registries.ENCHANTMENT, EnchantmentTags.TOOLTIP_ORDER);
 
          for(Holder<Enchantment> enchantment : tooltipOrder) {
@@ -76,12 +76,12 @@ public final class Appenders {
    }
 
    private static boolean shouldShowEnchantment(Holder<Enchantment> entry) {
-      List<ResourceLocation> filters = HeldItemInfo.filteredEnchantments;
+      List<ResourceLocation> filters = HeldItemInfoClient.filteredEnchantments;
       if (filters.isEmpty()) {
          return true;
       } else {
          ResourceLocation id = (ResourceLocation)entry.unwrapKey().map(ResourceKey::location).orElse( null);
-         return filters.contains(id) == HeldItemInfo.config.showOnlyFilteredEnchantments();
+         return filters.contains(id) == HeldItemInfoClient.config.showOnlyFilteredEnchantments();
       }
    }
 
@@ -101,7 +101,7 @@ public final class Appenders {
          int currentLoreLines = 0;
 
          for(Component line : loreComponent.lines()) {
-            int maxLines = Math.min(HeldItemInfo.config.maxLoreLines() - currentLoreLines, builder.getRemainingLines());
+            int maxLines = Math.min(HeldItemInfoClient.config.maxLoreLines() - currentLoreLines, builder.getRemainingLines());
 
             for(MutableComponent linePart : Util.wrapLines((FormattedText)line, maxLines)) {
                builder.append((Supplier)(() -> ComponentUtils.mergeStyles(linePart, LORE_STYLE)));
@@ -113,7 +113,7 @@ public final class Appenders {
 
    public static void appendUnbreakable(TooltipBuilder builder) {
       Unbreakable unbreakableComponent =  builder.stack.get(DataComponents.UNBREAKABLE);
-      if (unbreakableComponent != null && (!HeldItemInfo.config.respectHideFlags() || unbreakableComponent.showInTooltip())) {
+      if (unbreakableComponent != null && (!HeldItemInfoClient.config.respectHideFlags() || unbreakableComponent.showInTooltip())) {
          builder.append(UNBREAKABLE_TEXT);
       }
 

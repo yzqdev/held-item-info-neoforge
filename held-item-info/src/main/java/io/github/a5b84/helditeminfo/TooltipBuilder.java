@@ -61,7 +61,7 @@ public class TooltipBuilder {
    }
 
    public List<Component> build() {
-      if (this.realSize > this.maxSize && HeldItemInfo.config.showHiddenLinesCount()) {
+      if (this.realSize > this.maxSize && HeldItemInfoClient.config.showHiddenLinesCount()) {
          Component moreText = Component.translatable("container.shulkerBox.more", new Object[]{this.realSize - this.maxSize + 1}).withStyle(DEFAULT_COLOR, ChatFormatting.ITALIC);
          this.lines.set(this.lines.size() - 1, moreText);
       }

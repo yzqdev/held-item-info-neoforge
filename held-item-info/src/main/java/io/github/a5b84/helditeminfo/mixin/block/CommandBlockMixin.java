@@ -1,6 +1,6 @@
 package io.github.a5b84.helditeminfo.mixin.block;
 
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import io.github.a5b84.helditeminfo.TooltipAppender;
 import io.github.a5b84.helditeminfo.TooltipBuilder;
 import io.github.a5b84.helditeminfo.Util;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin({CommandBlock.class})
 public abstract class CommandBlockMixin implements TooltipAppender {
    public boolean heldItemInfo_shouldAppendTooltip() {
-      return HeldItemInfo.config.showCommandBlockInfo();
+      return HeldItemInfoClient.config.showCommandBlockInfo();
    }
 
    public void heldItemInfo_appendTooltip(TooltipBuilder builder) {
@@ -24,7 +24,7 @@ public abstract class CommandBlockMixin implements TooltipAppender {
          if (command != null) {
             command = command.trim();
             if (!command.isEmpty()) {
-               int maxLines = Math.min(HeldItemInfo.config.maxCommandLines(), builder.getRemainingLines());
+               int maxLines = Math.min(HeldItemInfoClient.config.maxCommandLines(), builder.getRemainingLines());
 
                for(MutableComponent text : Util.wrapLines(command, maxLines)) {
                   builder.append((Supplier)(() -> text.withStyle(TooltipBuilder.DEFAULT_COLOR)));

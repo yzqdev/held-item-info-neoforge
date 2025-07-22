@@ -1,6 +1,6 @@
 package io.github.a5b84.helditeminfo.mixin.block;
 
-import io.github.a5b84.helditeminfo.HeldItemInfo;
+import io.github.a5b84.helditeminfo.HeldItemInfoClient;
 import io.github.a5b84.helditeminfo.TooltipAppender;
 import io.github.a5b84.helditeminfo.TooltipBuilder;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin({BeehiveBlock.class})
 public abstract class BeehiveBlockMixin implements TooltipAppender {
    public boolean heldItemInfo_shouldAppendTooltip() {
-      return HeldItemInfo.config.showBeehiveContent();
+      return HeldItemInfoClient.config.showBeehiveContent();
    }
 
    public void heldItemInfo_appendTooltip(TooltipBuilder builder) {
