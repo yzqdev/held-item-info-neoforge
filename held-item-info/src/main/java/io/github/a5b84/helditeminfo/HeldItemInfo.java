@@ -24,9 +24,5 @@ public class HeldItemInfo {
 
     public HeldItemInfo(IEventBus modEventBus, ModContainer modContainer) {
 
-
-
-
-
     }
 }

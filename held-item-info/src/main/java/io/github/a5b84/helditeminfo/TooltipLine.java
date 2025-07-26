@@ -17,7 +17,7 @@ public class TooltipLine {
    }
 
    public static List<TooltipLine> from(List<Component> texts) {
-      List<TooltipLine> result = new ArrayList(texts.size());
+      List<TooltipLine> result = new ArrayList<>(texts.size());
       Font textRenderer = Minecraft.getInstance().font;
 
       for(Component text : texts) {

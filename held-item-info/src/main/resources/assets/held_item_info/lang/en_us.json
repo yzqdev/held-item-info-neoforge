@@ -57,5 +57,8 @@
     "text.autoconfig.held_item_info.option.showOnlyFilteredEnchantments.@Tooltip[1]": "Set to 'No' to show everything but those enchantments",
     "text.autoconfig.held_item_info.option.filteredEnchantments": "Filtered enchantments",
     "text.autoconfig.held_item_info.option.filteredEnchantments.@Tooltip[0]": "Put ID's here (e.g. 'minecraft:silk_touch' instead of 'Silk Touch')",
-    "text.autoconfig.held_item_info.option.filteredEnchantments.@Tooltip[1]": "Hit TAB a couple times if you can't find the text fields"
+    "text.autoconfig.held_item_info.option.filteredEnchantments.@Tooltip[1]": "Hit TAB a couple times if you can't find the text fields",
+
+    "text.autoconfig.held_item_info.option.showBannerPatternName": "Banner Pattern Name",
+    "text.autoconfig.held_item_info.option.showBannerPatterns": "Show Banner Patterns"
 }
