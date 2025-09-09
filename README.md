@@ -2,6 +2,7 @@
 
 This is an unofficial fork of [Held Item Info](https://modrinth.com/mod/held-item-info),for neoforge 1.21.1 and above.
 
+![](https://cdn-raw.modrinth.com/data/tEcWzCZz/images/197df08082921a25af462a3575f5da15bc495e5f.png)
 ## Mod descriptions
 
 Held item info is a client-side mod that shows information (like enchantments) about the held item under its name.
